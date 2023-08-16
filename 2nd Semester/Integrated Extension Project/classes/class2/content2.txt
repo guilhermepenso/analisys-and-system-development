@@ -1,0 +1,8 @@
+Conteúdo
+
+- Algoritmos;
+- Tipos de software;
+- Topicos de engenharia de Software;
+- Metodologias de projeto;
+- Introdução a linguagem Python;
+- Desenvolvimento de aplicações de software com Python.

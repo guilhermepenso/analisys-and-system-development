@@ -1,0 +1,23 @@
+> Projeto de Desenvolvimento de Software (PDS)
+
+* Professor Valdinei Saugo
+
+> ALGORITMOS
+
+* O que é algoritmo? 
+    - Sequência lógica de comandos;
+
+* Pra que servem os algoritmos?
+    - Junção de passos feitos para realizar determinadas tarefas, como um programa ou sistema;
+
+* Como funciona um algoritmo?
+    - Funciona como uma sequência lógica de instruções;
+
+* Tipos de algoritmo
+
+* Descrição Narrativa: manual ou instruções.
+
+* Fluxograma: Mapa de ilustrações sobre uma atividade 
+
+* Pseudocódigo: entre programação e linguagem de programação (Ex: Portugol)
+
