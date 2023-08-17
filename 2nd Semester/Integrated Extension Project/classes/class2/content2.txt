@@ -6,3 +6,12 @@ Conteúdo
 - Metodologias de projeto;
 - Introdução a linguagem Python;
 - Desenvolvimento de aplicações de software com Python.
+
+Python
+
+int - integer
+float - real
+bool - boolean
+str - string
+list - lista
+dict - dicionarios
