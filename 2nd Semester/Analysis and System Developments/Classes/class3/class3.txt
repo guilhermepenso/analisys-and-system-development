@@ -1,0 +1,65 @@
+ENGENHARIA DE REQUISITOS DE SOFTWARE
+
+Especificações - Requisitos que um produto deve ter
+
+O processo de levantar, analisar, domuntar, gerenciar e controlar a qualidade dos requisitos é chamado de Engenharia de Requisitos.
+
+* é importante interpretar tanto o lado do chefão, mas geralmente quem sabe mais é quem vai usar o software e dar a prioridade para sua necessidade.
+
+Requisitos - descrições dos serviços que devem ser providos pelo sistema e de suas restrições operacionais
+
+Restrições:
+    - Limitação;
+    - Confidencialidade;
+
+    Ex: Login
+            - Cadastro > Aviso! (Liberação do Admin, Permissão)
+            - Níveis (User, Admin)
+            - Recuperar Senha
+
+Tipos de Requisitos:
+
+Funcionais: tudo aquilo que o sistema deve prover, descrevendo o que o sistema deve fazer.
+
+Não Funcionais: restrições sobre o serviço ou funções oferecidos pelo sistema
+
+Requisitos do produto:
+- Confiança
+- Usabilidade (Facilidade, em uma escala até 5)
+- Eficiência
+- Portabilidade (Rodar em vários equipamentos)
+- Manutenibilidade
+- Segurança
+
+Requisitos Organizacionais:
+- Metas
+- Políticas e Procedimentos da Organização
+- Limites de processo por padrões, implementação, entrega do produto e restrições orçamentárias
+
+Requisitos Externos:
+- Derivados de fator externo como questão ética e legais e relaçãoes com outros sistemas ou organizações
+
+Requisitos de Domínio (Regras de Negócio - analisar os lucros com o mínimo de gasto possível)
+
+Requisitos na Documentação:
+
+Documentação: Informações utilizadas ou não para explicar uma determinada tarefa ou processo
+
+* Colocar até como deve ser desenvolvido, como variáveis, algoritmos, lógicas, etc.
+
+Etapas da Documentação:
+- Concepção: visão geral do sistema
+- Elicitação: modelagem dos requisitos
+- Elaboração: transforma tudo anteriomente discutido em diagramas (UML)
+- Negociação: conversa com cliente para descartar e manter as ideias do diagramas
+- Especificação: os aprovados são transformados em Especificação técnica
+- Validação: validar com todos os envolvidos após a definição da documentação dos Requisitos
+- Gerenciamento:garantir que tudo esteja de conforme com o que foi aprovado e validado
+
+RF - Requisitos Funcionais
+RNF - Requisitos Não Funcionais
+UC- Caso de Uso
+UDC - Diagrama de Classe
+RN - Regras de Negócio
+
+
