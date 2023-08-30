@@ -1,0 +1,8 @@
+while (menu == 4) do:
+    print ("--- MENU ---")
+    menu (input (print ("1- SOMA"))
+    menu (input ( print ("2- SUBTRAÇÃO"))
+    menu (input ( print ("3- MULTIPLICAÇÃO"))
+    menu (input ( print ("4- DIVISÃO"))
+
+    
