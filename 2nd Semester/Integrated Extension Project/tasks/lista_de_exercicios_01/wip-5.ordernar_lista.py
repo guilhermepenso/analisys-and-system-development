@@ -10,5 +10,6 @@ list.append(input("Digite o 1° número: "))
 list.append(input("Digite o 2° número: "))
 list.append(input("Digite o 3° número: "))
 list.append(input("Digite o 4° número: "))
+list.append(input("Digite o 5° número: "))
 
 print(list)
