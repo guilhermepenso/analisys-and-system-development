@@ -12,4 +12,4 @@ list.append(input("Digite o 3° número: "))
 list.append(input("Digite o 4° número: "))
 list.append(input("Digite o 5° número: "))
 
-print(list)
+print(sorted(list))
