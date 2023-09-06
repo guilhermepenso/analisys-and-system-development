@@ -12,12 +12,13 @@ while True:
     escolha_moeda1 = input("Escolha a moeda inicial: ")
     escolha_moeda2 = input("Escolha a moeda para converter: ")
 
-    if escolha_moeda1 or escolha_moeda2 not in ('1', '2', '3'):
-        print ("Opção Inválida")
+    if (escolha_moeda1 not in ('1', '2', '3')) or (escolha_moeda2 not in ('1', '2', '3')):
+        print("Opção Inválida")
         continue
 
     valor_moeda1 = float(input("Digite o valor: "))
 
+    
     if (escolha_moeda1 == '1') and (escolha_moeda2 == '2'):
         valor_moeda2 = valor_moeda1 * 1.17
         print ("£", valor_moeda1, "-> €", valor_moeda2)
