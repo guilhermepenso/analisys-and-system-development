@@ -50,10 +50,10 @@ def tabela_frete(uf, peso):
  
  # Função de criar e escrever os dados em um arquivo .txt   
 def arquivo(cpf, cep, peso, uf, cidade, valor, data):
-    with open(r"C:\Users\guilh\OneDrive\Documents\Study\Analysis and System Development\2nd Semester\Integrated Extension Project\tasks\trabalho_preco_frete\historico\historico.txt", "a", encoding="utf-8") as f:
+    with open(r"C:\Users\guilh\OneDrive\Documents\Study\Analysis and System Development\2nd Semester\Integrated Extension Project\tasks\trabalho_1_bimestre\historico\historico.txt", "a", encoding="utf-8") as f:
         f.write("CPF: {} | ".format(cpf))
-        f.write("Peso: {}kg | ".format(peso))
-        f.write("Valor: R${} | ".format(valor))
+        f.write("Peso: {} Kg | ".format(peso))
+        f.write("Valor: R$ {} | ".format(valor))
         f.write("CEP: {} | ".format(cep))
         f.write("UF: {} | ".format(uf))        
         f.write("Cidade: {} | ".format(cidade))
@@ -61,7 +61,7 @@ def arquivo(cpf, cep, peso, uf, cidade, valor, data):
    
 # Função de input para os dados base e chamada das outras funções         
 def inicio():
-    peso = float (input("Digite o peso(kg): "))
+    peso = float (input("Digite o peso(Kg): "))
     cpf = input("Digite o seu CPF: ")
     cep = input("Digite o CEP: ")
     lista_dados = cep_request(cep)
