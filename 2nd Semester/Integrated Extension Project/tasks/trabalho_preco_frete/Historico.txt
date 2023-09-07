@@ -1,0 +1,43 @@
+
+CPF: 80
+Cep: 09336080
+data: <class 'int'>
+Peso: 1.0
+UF: <class 'str'>
+Cidade: <class 'str'>
+Valor: R$ 12.5
+CPF: 80
+Cep: 681468465416576878617654680
+data: <class 'int'>
+Peso: 1.0
+UF: <class 'str'>
+Cidade: <class 'str'>
+Valor: R$ 12.5
+CPF: 10897857984
+Cep: 81820210
+data: <class 'int'>
+Peso: 1.0
+UF: <class 'str'>
+Cidade: <class 'str'>
+Valor: R$ 12.5
+CPF: 10897857984
+Cep: 81820210
+data: <class 'int'>
+Peso: 1.0
+UF: <class 'str'>
+Cidade: <class 'str'>
+Valor: R$ 12.5
+CPF: 10897857984
+Cep: 81820210
+data: 
+Peso: 1.0
+UF: 
+Cidade: 
+Valor: R$ 12.5
+CPF: 5
+Cep: 81820210
+data: 
+Peso: 1.0
+UF: 
+Cidade: 
+Valor: R$ 12.5
