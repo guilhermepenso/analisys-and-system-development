@@ -1,43 +1,28 @@
-
-CPF: 80
-Cep: 09336080
-data: <class 'int'>
-Peso: 1.0
-UF: <class 'str'>
-Cidade: <class 'str'>
-Valor: R$ 12.5
-CPF: 80
-Cep: 681468465416576878617654680
-data: <class 'int'>
-Peso: 1.0
-UF: <class 'str'>
-Cidade: <class 'str'>
-Valor: R$ 12.5
-CPF: 10897857984
+CPF: 108.978.579
 Cep: 81820210
-data: <class 'int'>
+data: 07-09-2023 11:26:20
 Peso: 1.0
-UF: <class 'str'>
-Cidade: <class 'str'>
+UF: PR
+Cidade: Curitiba
 Valor: R$ 12.5
-CPF: 10897857984
+CPF: 108.978.579-84
+Cep: 01007050
+data: 07-09-2023 11:27:36
+Peso: 2.0
+UF: SP
+Cidade: São Paulo
+Valor: R$ 15.0
+CPF: 0888888889
 Cep: 81820210
-data: <class 'int'>
+data: 07-09-2023 11:29:27
 Peso: 1.0
-UF: <class 'str'>
-Cidade: <class 'str'>
+UF: PR
+Cidade: Curitiba
 Valor: R$ 12.5
-CPF: 10897857984
+CPF: 8888888888
 Cep: 81820210
-data: 
-Peso: 1.0
-UF: 
-Cidade: 
-Valor: R$ 12.5
-CPF: 5
-Cep: 81820210
-data: 
-Peso: 1.0
-UF: 
-Cidade: 
-Valor: R$ 12.5
+data: 07-09-2023 11:29:48
+Peso: 2.0
+UF: PR
+Cidade: Curitiba
+Valor: R$ 19.9
