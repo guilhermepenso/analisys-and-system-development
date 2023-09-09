@@ -1,54 +1,80 @@
-# Python3 implementation of Best - Fit algorithm
- 
-# Function to allocate memory to blocks
-# as per Best fit algorithm
-def bestFit(blockSize, m, processSize, n):
-     
-    # Stores block id of the block
-    # allocated to a process
-    allocation = [-1] * n
-     
-    # pick each process and find suitable
-    # blocks according to its size ad
-    # assign to it
-    for i in range(n):
-         
-        # Find the best fit block for
-        # current process
-        bestIdx = -1
-        for j in range(m):
-            if blockSize[j] >= processSize[i]:
-                if bestIdx == -1:
-                    bestIdx = j
-                elif blockSize[bestIdx] > blockSize[j]:
-                    bestIdx = j
- 
-        # If we could find a block for
-        # current process
-        if bestIdx != -1:
-             
-            # allocate block j to p[i] process
-            allocation[i] = bestIdx
- 
-            # Reduce available memory in this block.
-            blockSize[bestIdx] -= processSize[i]
- 
-    print("Process No. Process Size     Block no.")
-    for i in range(n):
-        print(i + 1, "         ", processSize[i],
-                                end = "         ")
-        if allocation[i] != -1:
-            print(allocation[i] + 1)
-        else:
-            print("Not Allocated")
- 
-# Driver code
-if __name__ == '__main__':
-    blockSize = [100, 500, 200, 300, 600]
-    processSize = [212, 417, 112, 426]
-    m = len(blockSize)
-    n = len(processSize)
- 
-    bestFit(blockSize, m, processSize, n)
-     
-# This code is contributed by PranchalK
+import tkinter as tk
+
+class MemoryManager:
+    def __init__(self, master):
+        self.master = master
+        self.grid = []
+        self.selected = []
+        self.create_grid()
+
+    def create_grid(self):
+        frame = tk.Frame(self.master)
+        frame.pack(expand=True)
+        for i in range(5):
+            row = []
+            for j in range(30):
+                label = tk.Label(frame, bg="white", width=2, height=1, relief="solid", borderwidth=1)
+                label.grid(row=i, column=j)
+                label.bind("<Button-1>", self.select)
+                row.append(label)
+            self.grid.append(row)
+
+    def allocate(self, n):
+        for i in range(5):
+            for j in range(30):
+                if self.grid[i][j]['bg'] == "white":
+                    for k in range(n):
+                        if j+k < 30:
+                            self.grid[i][j+k]['bg'] = "blue"
+                    return
+
+    def select(self, event):
+        if event.widget['bg'] == "blue":
+            event.widget['bg'] = "red"
+            self.selected.append(event.widget)
+        elif event.widget['bg'] == "red":
+            event.widget['bg'] = "blue"
+            self.selected.remove(event.widget)
+
+    def deallocate(self):
+        for widget in self.selected:
+            widget['bg'] = "white"
+        self.selected = []
+
+    def organize(self):
+        memory_blocks = []
+        for i in range(5):
+            for j in range(30):
+                if self.grid[i][j]['bg'] == "blue":
+                    memory_blocks.append((i,j))
+                    self.grid[i][j]['bg'] = "white"
+
+        index = 0
+        x, y = 0, 0
+        for i in range(5):
+            for j in range(30):
+                if index < len(memory_blocks):
+                    if y == 30:
+                        x += 1
+                        y = 0
+                    self.grid[x][y].grid(row=i, column=j)
+                    self.grid[x][y]['bg'] = "blue"
+                    index += 1
+                    y += 1
+
+root = tk.Tk()
+mm = MemoryManager(root)
+
+allocate_button = tk.Button(root, text="Alocar", command=lambda: mm.allocate(int(entry.get())))
+allocate_button.pack(side="left")
+
+entry = tk.Entry(root)
+entry.pack(side="left")
+
+deallocate_button = tk.Button(root, text="Desalocar", command=mm.deallocate)
+deallocate_button.pack(side="left")
+
+organize_button = tk.Button(root, text="Organizar", command=mm.organize)
+organize_button.pack(side="left")
+
+root.mainloop()
