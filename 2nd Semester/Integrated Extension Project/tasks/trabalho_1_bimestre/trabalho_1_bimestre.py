@@ -1,9 +1,10 @@
-# FALTA VERIFICAÇÃO DE CEP DIGITADO COM TRAÇO OU SEM, NÚMERO DE DÍGITOS PELA LÓGICA COM IFS, ARQUIVO NOMEADO POR DATA DO DIA.
+# FALTA ARQUIVO NOMEADO POR DATA DO DIA.
+# FALTA IF DE VERIFICAÇÃO DE ERRO DE CEP INVÁLIDO
 
 import requests
 import datetime
 
-# Função de Localização de CEP (Retorna o uf(lista_dados[0]) e cidade(lista_dados[1])
+# Função de Localização de CEP (Retorna o uf(lista_dados[0]) e cidade(lista_dados[1]))
 def cep_request(cep):
     url = f"https://viacep.com.br/ws/{cep}/json/"
     response = requests.get(url)
@@ -13,14 +14,16 @@ def cep_request(cep):
         uf = info["uf"] 
         return (uf, cidade)
     else:
-        print(f"CEP Inválido")
+        print(f"Não foi possível localizar esse CEP")
 
-# Função de Data e Hora (Retorna a data atual)
+# Função de Data e Hora (Retorna a data e hora(lista_data[0]) e data(lista_data[1]))
 def data_hora(): 
     data_hora_atual = datetime.datetime.now()
     formato = "%d/%m/%Y %H:%M:%S"
+    formato1 = "%d/%m/%Y"
     data = data_hora_atual.strftime(formato)
-    return (data)
+    dia = data_hora_atual.strftime(formato1)
+    return (data, dia)
 
 # Função de Valor por Tabela de Preço com verificação de localidade (Retorna Valor)
 def tabela_frete(uf, peso):
@@ -51,8 +54,8 @@ def tabela_frete(uf, peso):
     return (valor)
  
  # Função de criar e escrever os dados em um arquivo .txt   
-def arquivo(cpf, cep, peso, uf, cidade, valor, data):
-    with open(r"C:\Users\guilh\OneDrive\Documents\Study\Analysis and System Development\2nd Semester\Integrated Extension Project\tasks\trabalho_1_bimestre\historico\historico.txt", "a", encoding="utf-8") as f:
+def arquivo(cpf, cep, peso, uf, cidade, valor, data, dia):
+    with open(r"C:\Users\guilh\OneDrive\Documents\Study\Analysis and System Development\2nd Semester\Integrated Extension Project\tasks\trabalho_1_bimestre\historico\(f'{dia}.txt')", "a", encoding="utf-8") as f:
         f.write("CPF: {} | ".format(cpf))
         f.write("Peso: {} Kg | ".format(peso))
         f.write("Valor: R$ {} | ".format(valor))
@@ -65,10 +68,16 @@ def arquivo(cpf, cep, peso, uf, cidade, valor, data):
 def inicio():
     peso = float (input("Digite o peso(Kg): "))
     cpf = input("Digite o seu CPF: ")
-    cep = input("Digite o CEP: ")
-    lista_dados = cep_request(cep)
-    data = data_hora()
+    while True:    
+        cep = input("Digite o CEP: ")
+        cep1 = cep.replace("-", "")
+        if (len(cep1) == 8):
+            lista_dados = cep_request(cep1)
+            break
+        else:
+            print("CEP Inválido, digite novamente...")
+    lista_data = data_hora()
     valor = tabela_frete(lista_dados[0], peso)
-    arquivo(cpf, cep, peso, lista_dados[0], lista_dados[1], valor, data)
+    arquivo(cpf, cep, peso, lista_dados[0], lista_dados[1], valor, lista_data[0], lista_data[1])
 
 inicio()
