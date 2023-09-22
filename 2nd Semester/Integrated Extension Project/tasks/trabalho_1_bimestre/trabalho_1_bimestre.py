@@ -10,8 +10,8 @@ def cep_request(cep):
     response = requests.get(url)
     if response.status_code == 200:
         info = response.json()
-        cidade = info["localidade"]
         uf = info["uf"] 
+        cidade = info["localidade"]
         return (uf, cidade)
     else:
         print(f"Não foi possível localizar esse CEP")
@@ -20,7 +20,7 @@ def cep_request(cep):
 def data_hora(): 
     data_hora_atual = datetime.datetime.now()
     formato = "%d/%m/%Y %H:%M:%S"
-    formato1 = "%d/%m/%Y"
+    formato1 = "%d-%m-%Y"
     data = data_hora_atual.strftime(formato)
     dia = data_hora_atual.strftime(formato1)
     return (data, dia)
@@ -55,7 +55,7 @@ def tabela_frete(uf, peso):
  
  # Função de criar e escrever os dados em um arquivo .txt   
 def arquivo(cpf, cep, peso, uf, cidade, valor, data, dia):
-    with open(r"C:\Users\guilh\OneDrive\Documents\Study\Analysis and System Development\2nd Semester\Integrated Extension Project\tasks\trabalho_1_bimestre\historico\(f'{dia}.txt')", "a", encoding="utf-8") as f:
+    with open(r"C:\Users\guilh\OneDrive\Documents\Study\Analysis and System Development\2nd Semester\Integrated Extension Project\tasks\trabalho_1_bimestre\historico\{dia}.txt", "a", encoding="utf-8") as f:
         f.write("CPF: {} | ".format(cpf))
         f.write("Peso: {} Kg | ".format(peso))
         f.write("Valor: R$ {} | ".format(valor))

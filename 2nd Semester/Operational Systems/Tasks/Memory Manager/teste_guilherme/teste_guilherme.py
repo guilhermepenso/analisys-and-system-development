@@ -1,14 +1,22 @@
 # LÓGICA
     # ALOCAR PRECISA SER EM BLOCOS
         # ALOCAR PRECISA NOMEAR O PROCESSO E COLOCAR COR RANDOM EM CADA ALOCAÇÃO
+        
+        
         # PRECISA DE BEST FIT IMPLEMENTADO
         ## VISUALMENTE ABRIR UM POP UP PARA PREENCHER COM OS DADOS NO TKINTER
+        
+        
     # DESALOCAR PRECISA SER EM BLOCOS
         # DESALOCAR PRECISA SER PELO NOME O PROCESSO 
         # FUNÇÃO DE DESALOCAR TODOS OS PROCESSOS
         ## VISUALMENTE ABRIR UM POP UP PARA PREENCHER COM OS DADOS NO TKINTER
+        
+        
     # REALOCAR PELOS BLOCOS
         
+
+
 
 import tkinter as tk
 from tkinter import messagebox
@@ -36,6 +44,7 @@ class MemoryManager:
     def allocate(self, n):
         free_blocks = []
         total_free = 0
+        #melhor ajuste = none
         for i in range(10):
             for j in range(10):
                 if self.grid[i][j]['bg'] == "white":
