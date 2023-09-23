@@ -8,13 +8,17 @@ import datetime
 def cep_request(cep):
     url = f"https://viacep.com.br/ws/{cep}/json/"
     response = requests.get(url)
-    if response.status_code == 200:
-        info = response.json()
-        uf = info["uf"] 
-        cidade = info["localidade"]
-        return (uf, cidade)
+    print (response.json())
+    if response.json() not in ("uf", "localidade"):
+        return
     else:
-        print(f"Não foi possível localizar esse CEP")
+        if response.status_code == 200:
+            info = response.json()
+            uf = info["uf"] 
+            cidade = info["localidade"]
+            return (uf, cidade)
+        else:
+            print(f"Não foi possível localizar esse CEP")
 
 # Função de Data e Hora (Retorna a data e hora(lista_data[0]) e data(lista_data[1]))
 def data_hora(): 
@@ -55,7 +59,7 @@ def tabela_frete(uf, peso):
  
  # Função de criar e escrever os dados em um arquivo .txt   
 def arquivo(cpf, cep, peso, uf, cidade, valor, data, dia):
-    with open(r"C:\Users\guilh\OneDrive\Documents\Study\Analysis and System Development\2nd Semester\Integrated Extension Project\tasks\trabalho_1_bimestre\historico\{dia}.txt", "a", encoding="utf-8") as f:
+    with open(dia + '.txt', "a", encoding="utf-8") as f:
         f.write("CPF: {} | ".format(cpf))
         f.write("Peso: {} Kg | ".format(peso))
         f.write("Valor: R$ {} | ".format(valor))
@@ -73,7 +77,11 @@ def inicio():
         cep1 = cep.replace("-", "")
         if (len(cep1) == 8):
             lista_dados = cep_request(cep1)
-            break
+            print (lista_dados)
+            if (lista_dados == ""):
+                print ('CEP Inválido, Digite Novamente!')
+            else:
+                break
         else:
             print("CEP Inválido, digite novamente...")
     lista_data = data_hora()
