@@ -1,6 +1,3 @@
-# FALTA ARQUIVO NOMEADO POR DATA DO DIA.
-# FALTA IF DE VERIFICAÇÃO DE ERRO DE CEP INVÁLIDO
-
 import requests
 import datetime
 
@@ -8,17 +5,20 @@ import datetime
 def cep_request(cep):
     url = f"https://viacep.com.br/ws/{cep}/json/"
     response = requests.get(url)
-    print (response.json())
-    if response.json() not in ("uf", "localidade"):
-        return
-    else:
-        if response.status_code == 200:
-            info = response.json()
-            uf = info["uf"] 
-            cidade = info["localidade"]
-            return (uf, cidade)
+    if response.status_code == 200:
+        info = response.json()
+        if info == {'erro': 'true'}: 
+            uf = "erro"
+            cidade = "erro"
+        elif info == {'erro': True}:
+            uf = "erro"
+            cidade = "erro"
         else:
-            print(f"Não foi possível localizar esse CEP")
+            uf = info['uf'] 
+            cidade = info['localidade']
+        return (uf, cidade)
+    else:
+        print(f"Não foi possível se conectar ao site ViaCEP")
 
 # Função de Data e Hora (Retorna a data e hora(lista_data[0]) e data(lista_data[1]))
 def data_hora(): 
@@ -59,7 +59,7 @@ def tabela_frete(uf, peso):
  
  # Função de criar e escrever os dados em um arquivo .txt   
 def arquivo(cpf, cep, peso, uf, cidade, valor, data, dia):
-    with open(dia + '.txt', "a", encoding="utf-8") as f:
+    with open("2nd Semester/Integrated Extension Project/tasks/trabalho_1_bimestre/historico/" + dia + '.txt', "a", encoding="utf-8") as f:
         f.write("CPF: {} | ".format(cpf))
         f.write("Peso: {} Kg | ".format(peso))
         f.write("Valor: R$ {} | ".format(valor))
@@ -70,22 +70,24 @@ def arquivo(cpf, cep, peso, uf, cidade, valor, data, dia):
    
 # Função de input para os dados base e chamada das outras funções         
 def inicio():
-    peso = float (input("Digite o peso(Kg): "))
-    cpf = input("Digite o seu CPF: ")
-    while True:    
-        cep = input("Digite o CEP: ")
-        cep1 = cep.replace("-", "")
-        if (len(cep1) == 8):
-            lista_dados = cep_request(cep1)
-            print (lista_dados)
-            if (lista_dados == ""):
-                print ('CEP Inválido, Digite Novamente!')
+    while True:
+        peso = float (input("Digite o peso(Kg): "))
+        cpf = input("Digite o seu CPF: ")
+        while True:    
+            cep = input("Digite o CEP: ")
+            cep1 = cep.replace("-", "")
+            if (len(cep1) == 8):
+                lista_dados = cep_request(cep1)
+                if (lista_dados[0] and lista_dados[1] == "erro"):
+                    print ('Não foi possível localizar esse CEP')
+                else:
+                    break
             else:
-                break
-        else:
-            print("CEP Inválido, digite novamente...")
-    lista_data = data_hora()
-    valor = tabela_frete(lista_dados[0], peso)
-    arquivo(cpf, cep, peso, lista_dados[0], lista_dados[1], valor, lista_data[0], lista_data[1])
-
+                print("Quantidade de digitos no CEP inválido")
+        lista_data = data_hora()
+        valor = tabela_frete(lista_dados[0], peso)
+        arquivo(cpf, cep, peso, lista_dados[0], lista_dados[1], valor, lista_data[0], lista_data[1])
+        resp = input("Deseja fazer outro cálculo [S/N]? ")
+        if (resp == "n") or (resp == "N"):
+            break
 inicio()

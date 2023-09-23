@@ -1,5 +1,0 @@
-CPF: 157.658.225-91 | Peso: 6.9 Kg | Valor: R$ 29.9 | CEP: 57062802 | UF: AL | Cidade: Maceió | Data: 07/09/2023 17:07:53
-CPF: 059.465.325-77 | Peso: 1.0 Kg | Valor: R$ 12.5 | CEP: 40325450 | UF: BA | Cidade: Salvador | Data: 07/09/2023 17:10:48
-CPF: 180.847.789-98 | Peso: 8.0 Kg | Valor: R$ 29.9 | CEP: 81820210 | UF: PR | Cidade: Curitiba | Data: 20/09/2023 22:13:43
-CPF: 108.977.566-48 | Peso: 68.0 Kg | Valor: R$ 49.9 | CEP: 81820-210 | UF: PR | Cidade: Curitiba | Data: 21/09/2023 12:24:25
-CPF: 1 | Peso: 1.0 Kg | Valor: R$ 12.5 | CEP: 81820210 | UF: PR | Cidade: Curitiba | Data: 21/09/2023 22:21:17

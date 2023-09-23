@@ -1,1 +1,0 @@
-CPF: 1 | Peso: 1.0 Kg | Valor: R$ 12.5 | CEP: 81820210 | UF: PR | Cidade: Curitiba | Data: 21/09/2023 22:44:12
