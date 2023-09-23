@@ -4,9 +4,6 @@ import random
 import string
 import tkinter.simpledialog
 import itertools
-from datetime import datetime
-import time
-
 
 # Função para gerar caracteres sequenciais pelo itertools
 
@@ -26,7 +23,6 @@ class memory_manager:
     def __init__(self, master):
         self.master = master
         self.grid = []
-        self.selected = []
         self.groups = {}
         self.process = {}
         self.chars = process_name_generator()
@@ -40,65 +36,50 @@ class memory_manager:
         for i in range(10):
             row = []
             for j in range(10):
-                label = tk.Label(frame, bg="white", width=3, height=1, relief="solid", borderwidth=1)
+                label = tk.Label(frame, bg="white", width=10, height=3, relief="solid", borderwidth=1.2)
                 label.grid(row=i, column=j)
-                label.bind("<Button-1>", self.select)
+                label.bind("<Button-1>")
                 row.append(label)
             self.grid.append(row)
 
     def allocate(self):
-        n = tkinter.simpledialog.askinteger("Entrada", "Qual o tamanho do processo a ser alocado?")
+        n = tkinter.simpledialog.askinteger("Alocar", "Qual o tamanho do processo a ser alocado?")
         free_blocks = []
         total_free = 0
         best_fit = None
         for i in range(10):
             for j in range(10):
-                if self.grid[i][j]['background'] == "white":
+                if (self.grid[i][j]['background'] == "white"):
                     total_free += 1
                     free_blocks.append((i, j))
-                else:
                     if len(free_blocks) >= n:
                         if best_fit is None or len(best_fit) > len(free_blocks):
-                                best_fit = list(free_blocks)
-                        free_blocks = []
+                            best_fit = list(free_blocks)
+                else:
+                    free_blocks = []
         if len(free_blocks) >= n and (best_fit is None or len(best_fit) > len(free_blocks)):
             best_fit = list(free_blocks)
         if total_free < n:
-            messagebox.showinfo("Erro", "Sem espaço, precisa liberar espaço!")
+            messagebox.showinfo("Erro", "Sem Espaço Total")
             return
         if best_fit is None:
-            messagebox.showinfo("Erro", "Sem espaço sequencial, realocar os processos!")
+            messagebox.showinfo("Erro", "Sem Espaço Sequencial")
             return
-        color= "#{:06x}".format(random.randint(0, 0xFFFFFF))
+        color= "#{:06x}".format(random.randint(0x0000, 0xFFFFFF))
         id_group = next(self.chars)
         for k in range(n):
             self.grid[best_fit[k][0]][best_fit[k][1]]["background"] = color
             self.grid[best_fit[k][0]][best_fit[k][1]]["text"] = id_group
         self.groups[id_group] = color
-        self.process[id_group] = {'size': n, 'alocation_time': datetime.now(), 'deallocation_time': None}
-               
-    def select(self, event):
-        if event.widget['text'] != "":
-            id_group = event.widget['text']
-            color = self.groups[id_group]
-            for i in range(10):
-                for j in range(10):
-                    if self.grid[i][j]["text"] == id_group:
-                        if self.grid[i][j]["background"] == color:
-                            self.grid[i][j]["background"] = "orange"
-                            self.selected.append(self.grid[i][j])
-                        else:
-                            self.grid[i][j]["background"] = color
-                            self.selected.append(self.grid[i][j]) ###n seiiiiii##   
-                                           
+
+                        
     def deallocate(self):
-        for widget in self.selected:
-            id_group = widget["text"]
-            if id_group in self.process:
-                self.process[id_group]["deallocation_time"] = datetime.now()
-            widget['background'] = "white"
-            widget['text'] = ""
-        self.selected = []
+        d = tkinter.simpledialog.askstring("Desalocar", "Qual o nome do processo que será desalocado?")
+        for i in range(10):
+            for j in range(10):
+                if self.grid[i][j]["text"] == d.upper():
+                    self.grid[i][j]['background'] = "white"
+                    self.grid[i][j]["text"] = ""
 
     def reallocate(self):
         memory_blocks = []
@@ -124,24 +105,23 @@ class memory_manager:
                 y += 1
 
 root = tk.Tk()
-root.geometry("400x350")  # Fixa o tamanho da janela
+root.geometry("800x600")  # Fixa o tamanho da janela
 root.resizable(0, 0)  # Desativa a opção de tela cheia
-
-title = tk.Label(root, text="", font=("Arial", 20))  # Adiciona um título
-title.pack(pady=10)  # Posiciona o título acima da grade
+root.title('Gerenciador de Memória')
+root.iconbitmap("RAM.ico")
 
 mm = memory_manager(root)
 
 button_frame = tk.Frame(root)  # Cria um novo frame para os botões
 button_frame.pack(side="top", fill="x", pady=20)  # Adiciona preenchimento vertical
 
-allocate_button = tk.Button(button_frame, text="Alocar", command=mm.allocate, height=2, width=10)
-allocate_button.pack(side="left", padx=10)
+allocate_button = tk.Button(button_frame, text="Alocar", command=mm.allocate, height=5, width=35,  bg='gray')
+allocate_button.pack(side="left", padx=5)
 
-deallocate_button = tk.Button(button_frame, text="Desalocar", command=mm.deallocate, height=2, width=10)
-deallocate_button.pack(side="left", padx=10)
+deallocate_button = tk.Button(button_frame, text="Desalocar", command=mm.deallocate, height=5, width=35,  bg='gray')
+deallocate_button.pack(side="left", padx=5)
 
-reallocate_button = tk.Button(button_frame, text="Realocar", command=mm.reallocate, height=2, width=10)
-reallocate_button.pack(side="left", padx=10)
+reallocate_button = tk.Button(button_frame, text="Realocar", command=mm.reallocate, height=5, width=35,  bg='gray')
+reallocate_button.pack(side="left", padx=5)
 
 root.mainloop()

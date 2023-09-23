@@ -40,7 +40,7 @@ class memory_manager:
         for i in range(10):
             row = []
             for j in range(10):
-                label = tk.Label(frame, bg="white", width=3, height=1, relief="solid", borderwidth=1)
+                label = tk.Label(frame, bg="white", width=10, height=3, relief="solid", borderwidth=1)
                 label.grid(row=i, column=j)
                 label.bind("<Button-1>", self.select)
                 row.append(label)
@@ -75,7 +75,7 @@ class memory_manager:
             self.grid[best_fit[k][0]][best_fit[k][1]]["background"] = color
             self.grid[best_fit[k][0]][best_fit[k][1]]["text"] = id_group
         self.groups[id_group] = color
-        self.process[id_group] = {'size': n, 'alocation_time': datetime.now(), 'deallocation_time': None}
+        self.process[id_group] = {'size': n, 'allocation_time': datetime.now(), 'deallocation_time': None}
                
     def select(self, event):
         if event.widget['text'] != "":
@@ -124,24 +124,23 @@ class memory_manager:
                 y += 1
 
 root = tk.Tk()
-root.geometry("400x350")  # Fixa o tamanho da janela
+root.geometry("800x600")  # Fixa o tamanho da janela
 root.resizable(0, 0)  # Desativa a opção de tela cheia
-
-title = tk.Label(root, text="", font=("Arial", 20))  # Adiciona um título
-title.pack(pady=10)  # Posiciona o título acima da grade
+root.title('Gerenciador de Memória')
+root.iconbitmap("2nd Semester\Operational Systems\Tasks\Memory Manager\RAM.ico")
 
 mm = memory_manager(root)
 
 button_frame = tk.Frame(root)  # Cria um novo frame para os botões
 button_frame.pack(side="top", fill="x", pady=20)  # Adiciona preenchimento vertical
 
-allocate_button = tk.Button(button_frame, text="Alocar", command=mm.allocate, height=2, width=10)
-allocate_button.pack(side="left", padx=10)
+allocate_button = tk.Button(button_frame, text="Alocar", command=mm.allocate, height=5, width=35)
+allocate_button.pack(side="left", padx=5)
 
-deallocate_button = tk.Button(button_frame, text="Desalocar", command=mm.deallocate, height=2, width=10)
-deallocate_button.pack(side="left", padx=10)
+deallocate_button = tk.Button(button_frame, text="Desalocar", command=mm.deallocate, height=5, width=35)
+deallocate_button.pack(side="left", padx=5)
 
-reallocate_button = tk.Button(button_frame, text="Realocar", command=mm.reallocate, height=2, width=10)
-reallocate_button.pack(side="left", padx=10)
+reallocate_button = tk.Button(button_frame, text="Realocar", command=mm.reallocate, height=5, width=35)
+reallocate_button.pack(side="left", padx=5)
 
 root.mainloop()
