@@ -112,7 +112,7 @@ screen_height = root.winfo_screenheight()
 x = (screen_width/2) - (width/2)
 y = (screen_height/2) - (height/2)
 root.geometry('%dx%d+%d+%d' % (width, height, x, y))
-
+root.iconbitmap(default='2nd Semester\Operational Systems\Tasks\Memory Manager\RAM.ico')
 mm = memory_manager(root)
 button_frame = tk.Frame(root)
 button_frame.pack(side="top", fill="x", pady=20)
