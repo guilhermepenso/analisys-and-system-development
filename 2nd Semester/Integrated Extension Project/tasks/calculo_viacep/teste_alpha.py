@@ -1,5 +1,8 @@
+from tkinter import *
 import requests
 import datetime
+
+
 
 # Função de Localização de CEP (Retorna o uf(lista_dados[0]) e cidade(lista_dados[1]))
 def cep_request(cep):
@@ -91,3 +94,17 @@ def inicio():
         if (resp == "n") or (resp == "N"):
             break
 inicio()
+
+root = Tk()
+
+class Application():
+    def __init__(self):
+        self.root = root
+        self.tela()
+        root.mainloop()
+    def tela(self):
+        self.root.title("Cálculo ViaCEP")
+        self.root.configure(background= "#00000f")
+        
+Application()
+        
