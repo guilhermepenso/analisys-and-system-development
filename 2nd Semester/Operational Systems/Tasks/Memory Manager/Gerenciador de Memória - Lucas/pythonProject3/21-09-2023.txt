@@ -1,0 +1,4 @@
+Nome: a, Tamanho: 12, Hora de alocação: 21:34:33, Hora de desalocação: 21:34:58, Duração: 0:00:24.557605
+Nome: b, Tamanho: 200, Hora de alocação: 21:34:48, Hora de desalocação: 21:34:56, Duração: 0:00:07.338636
+Nome: c, Tamanho: 1, Hora de alocação: 21:34:50, Hora de desalocação: N/A, Duração: N/A
+Nome: d, Tamanho: 32, Hora de alocação: 21:34:53, Hora de desalocação: N/A, Duração: N/A

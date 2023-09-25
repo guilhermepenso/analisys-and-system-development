@@ -1,0 +1,9 @@
+Nome: a, Tamanho: 20, Hora de alocação: 18:42:00, Hora de desalocação: N/A, Duração: N/A
+Nome: b, Tamanho: 200, Hora de alocação: 18:42:03, Hora de desalocação: N/A, Duração: N/A
+Nome: c, Tamanho: 50, Hora de alocação: 18:42:07, Hora de desalocação: N/A, Duração: N/A
+Nome: d, Tamanho: 20, Hora de alocação: 18:42:09, Hora de desalocação: N/A, Duração: N/A
+Nome: e, Tamanho: 5, Hora de alocação: 18:42:11, Hora de desalocação: 18:42:32, Duração: 0:00:20.472627
+Nome: f, Tamanho: 5, Hora de alocação: 18:42:13, Hora de desalocação: N/A, Duração: N/A
+Nome: g, Tamanho: 2, Hora de alocação: 18:42:15, Hora de desalocação: N/A, Duração: N/A
+Nome: h, Tamanho: 7, Hora de alocação: 18:42:18, Hora de desalocação: N/A, Duração: N/A
+Nome: i, Tamanho: 2, Hora de alocação: 18:42:21, Hora de desalocação: N/A, Duração: N/A
