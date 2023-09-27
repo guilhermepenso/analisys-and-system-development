@@ -1,5 +1,7 @@
 import requests
 import datetime
+import os
+
 
 # Função de Localização de CEP (Retorna o uf(lista_dados[0]) e cidade(lista_dados[1]))
 def cep_request(cep):
@@ -56,10 +58,10 @@ def tabela_frete(uf, peso):
         valor = 49.90
         print ("Valor do Frete: R$", valor)   
     return (valor)
- 
+
  # Função de criar e escrever os dados em um arquivo .txt   
 def arquivo(cpf, cep, peso, uf, cidade, valor, data, dia):
-    with open("2nd Semester/Integrated Extension Project/tasks/calculo_viacep/historico/" + dia + '.txt', "a", encoding="utf-8") as f:
+    with open(dia + '.txt', "a", encoding="utf-8") as f:
         f.write("CPF: {} | ".format(cpf))
         f.write("Peso: {} Kg | ".format(peso))
         f.write("Valor: R$ {} | ".format(valor))
@@ -87,7 +89,10 @@ def inicio():
         lista_data = data_hora()
         valor = tabela_frete(lista_dados[0], peso)
         arquivo(cpf, cep, peso, lista_dados[0], lista_dados[1], valor, lista_data[0], lista_data[1])
-        resp = input("Deseja fazer outro cálculo [S/N]? ")
+        resp = input("\nDeseja fazer outro cálculo [S/N]? ")
         if (resp == "n") or (resp == "N"):
             break
+        
 inicio()
+
+input("\n...Aperte qualquer tecla para encerrar...")

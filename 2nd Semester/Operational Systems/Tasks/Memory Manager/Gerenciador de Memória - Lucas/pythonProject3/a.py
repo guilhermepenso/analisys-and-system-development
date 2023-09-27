@@ -122,7 +122,7 @@ class GerenciadorDeMemoria:
                     self.grade[x][y]['text'] = blocos_memoria[indice][2]
                     indice += 1
                 root.update()
-                time.sleep(0.04)  # pausa de 0.01 segundo
+                time.sleep(0.02)  # pausa de 0.01 segundo
                 y += 1
 
         self.habilitar_interacao()

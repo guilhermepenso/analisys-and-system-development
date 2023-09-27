@@ -1,6 +1,0 @@
-CPF: 1 | Peso: 1.0 Kg | Valor: R$ 12.5 | CEP: 81820-210 | UF: PR | Cidade: Curitiba | Data: 23/09/2023 21:20:35
-CPF: 1 | Peso: 1.0 Kg | Valor: R$ 12.5 | CEP: 81820210 | UF: PR | Cidade: Curitiba | Data: 23/09/2023 21:24:58
-CPF: 1 | Peso: 1.0 Kg | Valor: R$ 12.5 | CEP: 81820210 | UF: PR | Cidade: Curitiba | Data: 23/09/2023 21:25:46
-CPF: 1 | Peso: 1.0 Kg | Valor: R$ 12.5 | CEP: 81820210 | UF: PR | Cidade: Curitiba | Data: 23/09/2023 21:27:24
-CPF: 1 | Peso: 1.0 Kg | Valor: R$ 12.5 | CEP: 81820210 | UF: PR | Cidade: Curitiba | Data: 23/09/2023 21:27:52
-CPF: 1 | Peso: 1.0 Kg | Valor: R$ 12.5 | CEP: 81820210 | UF: PR | Cidade: Curitiba | Data: 23/09/2023 21:30:58
