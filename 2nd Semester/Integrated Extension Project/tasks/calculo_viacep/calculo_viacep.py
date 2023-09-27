@@ -1,7 +1,5 @@
 import requests
 import datetime
-import os
-
 
 # Função de Localização de CEP (Retorna o uf(lista_dados[0]) e cidade(lista_dados[1]))
 def cep_request(cep):
@@ -9,16 +7,22 @@ def cep_request(cep):
     response = requests.get(url)
     if response.status_code == 200:
         info = response.json()
+        
+        # A lista de dados recebida no info, caso não seja encontrado o CEP vem com as informações {'erro': 'true'}, então verificamos se o request achou pelo seu conteúdo
         if info == {'erro': 'true'}: 
-            uf = "erro"
-            cidade = "erro"
+            erro = "true"
+            return (erro)
+            
+        # Há uma variante de erro que pode mandar {'erro': True} para a informação do request 
         elif info == {'erro': True}:
-            uf = "erro"
-            cidade = "erro"
+            erro = "true"
+            return(erro)
+            
+        # Se acharmos o CEP, o else irá colocar somente uf e localidade e as armazenam nas variáveis que irão ser retornadas 
         else:
             uf = info['uf'] 
             cidade = info['localidade']
-        return (uf, cidade)
+            return (uf, cidade)
     else:
         print(f"Não foi possível se conectar ao site ViaCEP")
 
@@ -74,25 +78,45 @@ def arquivo(cpf, cep, peso, uf, cidade, valor, data, dia):
 def inicio():
     while True:
         peso = float (input("Digite o peso(Kg): "))
-        cpf = input("Digite o seu CPF: ")
+        
+        # Loop para verificação da entrada do CPF
+        while True:
+            cpf = input("Digite o seu CPF: ")
+            cpf1 = cpf.replace(".", "") 
+            cpf1 = cpf1.replace("-", "")
+            if len(cpf1) == 11:
+                break
+            else:
+                print ("CPF Inválido")
+                
+        # Loop para verificação da entrada do CEP e do request
         while True:    
             cep = input("Digite o CEP: ")
             cep1 = cep.replace("-", "")
             if (len(cep1) == 8):
                 lista_dados = cep_request(cep1)
-                if (lista_dados[0] and lista_dados[1] == "erro"):
+                if (lista_dados == "true"):
                     print ('Não foi possível localizar esse CEP')
                 else:
                     break
             else:
                 print("Quantidade de digitos no CEP inválido")
+                
+        # Chamada da def data_hora para informações no .txt
         lista_data = data_hora()
+        
+        # Chamada da def tabela_frete para tabela de preços do frete
         valor = tabela_frete(lista_dados[0], peso)
+        
+        # Chama da def arquivo para criação do .txt
         arquivo(cpf, cep, peso, lista_dados[0], lista_dados[1], valor, lista_data[0], lista_data[1])
         resp = input("\nDeseja fazer outro cálculo [S/N]? ")
+        
+        # Verificação de saída do loop
         if (resp == "n") or (resp == "N"):
             break
         
 inicio()
 
+# Input para o executável não fechar automaticamente
 input("\n...Aperte qualquer tecla para encerrar...")
