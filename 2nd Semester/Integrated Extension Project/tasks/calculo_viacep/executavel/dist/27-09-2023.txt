@@ -1,2 +1,0 @@
-CPF: 111.111.111-88 | Peso: 2.0 Kg | Valor: R$ 19.9 | CEP: 81820-210 | UF: PR | Cidade: Curitiba | Data: 27/09/2023 19:43:21
-CPF: 111.888.999-77 | Peso: 1.0 Kg | Valor: R$ 12.5 | CEP: 81320-000 | UF: PR | Cidade: Curitiba | Data: 27/09/2023 19:43:59
