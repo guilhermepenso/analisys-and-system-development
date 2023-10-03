@@ -1,3 +1,7 @@
+# FALTA alterar Realocação para mostrar animação por blocos
+# FALTA botão de help
+# ?? verificar não por cor, mas por bits 0 e 1 a disponibilidade do endereço
+
 import tkinter as tk
 from tkinter import messagebox
 import tkinter.simpledialog
