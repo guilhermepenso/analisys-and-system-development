@@ -1,0 +1,36 @@
+> O QUE É:
+
+    - É uma lista com um "nó" contendo um ou mais elementos
+    - Ao final dos elementos tem a direção através de um ponteiro para o próximo nó
+    - Repete esse processo até que não exista mais um próximo.
+
+> COMO IMPLEMENTAR:
+    # class Node:
+        - Devemos criar uma classe chamada Node:
+            # def __init__(self, data):
+                - Nessa classe, criamos um "def __init__ (self, data):", contendo o "self.data = data" que sinaliza o dado sendo recebido na dentro do Node
+                - Ao final precisa conter o "self.next = None" que é o ponteiro apontando para o "self.head" do próximo Node
+
+    # class LinkedList:
+        - Criar uma classe para a Lista Encadeada chamada LinkedList:
+            # def __init__ (self):
+                - Criamos uma função "def __init__ (self):" dentro da classe da lista encadeada declarando "self.head", sendo seu ponto inicial, ele tamém recebe o valor None que significa vazio para começar a lista
+                - Também criamos dentro dessa função uma declaração "sef.size" que diz a largura do dado a partir do "self.head",  com o valor 0, sinalizando que o primeiro siz
+            # def allocate(self, n):
+                - Criamos uma função "def allocate(self, n):" dentro da classe LinkedList contendo um if
+                # if self.head:
+                    - "if self.head" testa se já existe alguma informação no self.head, se for verdadeiro:
+                    # pointer = self.head
+                        - se tiver algum valor em self.head, é armazenado na variável pointer 
+                    #while (pointer.next):
+                        - inicia um while se existir um próximo Node através do .next
+                        # pointer = pointer.next
+                            - se existir, pointer irá receber o pointer.next que se prepara para receber o valor do próximo Node
+                    # pointer.next = Node(n)
+                        - Mandamos o valor do novo "nó" de n para a class Node e o guardamos no pointer.next a ligação para ele
+                #else:
+                    - se não existir um "self.head", significa que precisamos fazer a primeira inserção
+                    # self.head = Node(n)
+                        - "self.head" irá receber o valor "data" do Node
+                # self.size += 1
+                    - adiciona em "self.size" a cada vez que recebe o valor " data do Node, até que vá para o próximo Node, repetindo o processo a cada processo, seja ele if ou else

@@ -1,6 +1,0 @@
-> O QUE É:
-
-    - POO ou Programação Orientada a Objetos, é um meio de definir um objeto através de código
-    - Primeiro criamos uma classe contendo o nome do tipo do objeto
-    - Após isso, definimos algumas especificações desse objeto com uma função chamada "def __init__ (self):"
-    - Nessa função preenchemos a parte funcional do objeto que será chamado durante sua execução com o prefixo "self."
