@@ -36,7 +36,7 @@ class memory_manager:
             for j in range(10):
                 label = tk.Label(frame, bg="white", width=10, height=3, relief="solid", borderwidth=1.2)
                 label.grid(row=i, column=j)
-                label.bind("<Button-1>")
+                block_status = 0
                 row.append(label)
             self.grid.append(row)
 
