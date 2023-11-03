@@ -33,7 +33,7 @@ def gerar_grupos(nomes, n):
     return grupos
 
 # usar pandas
-#dicionário, usar um loop para separar os nomes com um random de 0 a quantidade de grupos
+# dicionário, usar um loop para separar os nomes com um random de 0 a quantidade de grupos
 # colocar dentro de um dataframe como por exemplo:
 # df = pd.DataFrame({'store': ['B', 'B', 'A', 'A', 'B', 'B', 'A', 'A'],
                    # 'sales': [12, 25, 8, 14, 10, 20, 30, 30]})

@@ -1,0 +1,4 @@
+import random
+
+nomes = input("Nomes: ")
+

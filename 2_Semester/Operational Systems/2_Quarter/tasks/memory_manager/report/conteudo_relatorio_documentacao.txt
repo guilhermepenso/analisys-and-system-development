@@ -1,30 +1,29 @@
-introdução 
+﻿Introdução (Murilo – feito)
 - máximo 1-2 pág
 
-descritivo 
+Descritivo (Murilo – andamento)
 - o que faz o programa, explicar como a lógica de alocação, desalocação, etc
 
-requisitos 
-- linguagem, biblioteca, hardware, armazenamento, quantidade de memória, mínimo do processador, quao o compilador
+Requisitos (matheus – andamento)
+- linguagem, biblioteca, hardware, armazenamento, quantidade de memória, mínimo do processador, qual o compilador
 
-* protótipos de tela (opcional)
 
-funcionamento / telas 
+Funcionamento / Telas (Matheus – andamento)
 - explicar como funciona passo a passo, com telas
 
-considerações finais 
+Considerações Finais (Emanuel – andamento)
 - CONCLUSÕES
 
-referencias 
+Referencias (Emanuel – andamento)
 - aonde achou os algoritmos
 
-anexo 
+Anexo (Guilherme – andamento)
 - algoritmo / pseudo código / fluxograma do best fit e realocação
 
-anexo codigo fonte 
+Anexo Código Fonte (Guilherme – andamento)
 - com comentários
 
-anexo manual do usuário
+Anexo Manual do Usuário (Matheus – andamento)
 - usa muito do funcionamento, mas tem tbm como abrir, como sair, etc
 
 
