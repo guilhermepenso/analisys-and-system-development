@@ -4,122 +4,125 @@ import tkinter.simpledialog
 import itertools
 import random
 import string
-import time
 
-def process_name_generator():
-    size = 1
+def gerador_nome_processo():
+    tamanho = 1
     while True:
-        for s in itertools.product(string.ascii_uppercase, repeat = size):
+        for s in itertools.product(string.ascii_uppercase, repeat=tamanho):
             yield "".join(s)
-        size += 1
+        tamanho += 1
 
-class memory_manager:
-    def __init__(self, master):
-        self.master = master
-        self.grid = [None] * 100  # Altera para ter 100 posições no total.
-        self.groups = {}
-        self.chars = process_name_generator()
-        self.status = [0] * 100  # Altera para ter 100 posições no total.
-        self.create_grid()
+class GerenciadorMemoria:
+    def __init__(self, mestre):
+        self.mestre = mestre
+        self.grade = [None] * 100
+        self.grupos = {}
+        self.chars = gerador_nome_processo()
+        self.status = [0] * 100
+        self.criar_grade()
 
-    def create_grid(self):
-        frame = tk.Frame(self.master)
-        frame.pack(expand=True)
-        for i in range(0, 100):  # Altera o range para começar em 0 e ir até 99.
-            label = tk.Label(frame, bg="white", width=10, height=3, relief="solid", borderwidth=1.2)
-            label.grid(row=i//10, column=i%10)  # Ajusta a posição do grid para começar em 0.
-            self.grid[i] = label
+    def criar_grade(self):
+        quadro = tk.Frame(self.mestre)
+        quadro.pack(expand=True)
+        for i in range(100):
+            rotulo = tk.Label(quadro, bg="white", width=10, height=3, relief="solid", borderwidth=1.2)
+            rotulo.grid(row=i//10, column=i%10)
+            self.grade[i] = rotulo
 
-    def allocate(self):
+    def alocar(self):
         n = tkinter.simpledialog.askinteger("Alocar", "Digite o Tamanho do Processo")
-        free_blocks = []
-        best_fit = None
-        total_free = 0
-        for i in range(0, 100):  # Altera o range para começar em 0 e ir até 99.
+        blocos_livres = []
+        melhor_ajuste = None
+        total_livre = 0
+        for i in range(100):
             if self.status[i] == 0:
-                total_free += 1
-                free_blocks.append(i)
+                total_livre += 1
+                blocos_livres.append(i)
             else:
-                if len(free_blocks) >= n:
-                    if best_fit is None or len(best_fit) > len(free_blocks):
-                        best_fit = list(free_blocks)
-                free_blocks = []
-        if len(free_blocks) >= n:
-            if best_fit is None or len(best_fit) > len(free_blocks):
-                best_fit = list(free_blocks)
-        if total_free < n:
+                if len(blocos_livres) >= n:
+                    if melhor_ajuste is None or len(melhor_ajuste) > len(blocos_livres):
+                        melhor_ajuste = list(blocos_livres)
+                blocos_livres = []
+        if len(blocos_livres) >= n:
+            if melhor_ajuste is None or len(melhor_ajuste) > len(blocos_livres):
+                melhor_ajuste = list(blocos_livres)
+        if total_livre < n:
             messagebox.showinfo("Erro", "Sem Espaço Total")
             return
-        if best_fit is None:
+        if melhor_ajuste is None:
             messagebox.showinfo("Erro", "Sem Espaço Sequencial")
             return
-        block_color = "#{:06x}".format(random.randint(0x0000, 0xFFFFFF))
-        block_name = next(self.chars)
+        cor_bloco = "#{:06x}".format(random.randint(0x0000, 0xFFFFFF))
+        nome_bloco = next(self.chars)
         for k in range(n):
-            self.grid[best_fit[k]]["text"] = block_name
-            self.grid[best_fit[k]]["background"] = block_color
-            self.groups[block_name] = block_color
-            self.status[best_fit[k]] = 1
+            self.grade[melhor_ajuste[k]]["text"] = nome_bloco
+            self.grade[melhor_ajuste[k]]["background"] = cor_bloco
+            self.grupos[nome_bloco] = cor_bloco
+            self.status[melhor_ajuste[k]] = 1
 
-    def deallocate(self):
+    def desalocar(self):
         d = tkinter.simpledialog.askstring("Desalocar", "Digite o Nome do Processo")
-        for i in range(0, 100):  # Altera o range para começar em 0 e ir até 99.
-            if self.grid[i]["text"] == d.upper():
-                self.grid[i]['background'] = "white"
-                self.grid[i]["text"] = ""
+        for i in range(100):
+            if self.grade[i]["text"] == d.upper():
+                self.grade[i]['background'] = "white"
+                self.grade[i]["text"] = ""
                 self.status[i] = 0
 
-    def full_deallocate(self):
-        for i in range(0, 100):  # Altera o range para começar em 0 e ir até 99.
+    def limpar_processos(self):
+        for i in range(100):
             if self.status[i] != 0:
-                self.grid[i]["background"] = "white"
-                self.grid[i]["text"] = ""
+                self.grade[i]["background"] = "white"
+                self.grade[i]["text"] = ""
                 self.status[i] = 0
 
-    def reallocate(self):
-        TamanhoMemoria = 0
-        TextoMemoria = None
-        for Pos in range(1, 100):  
-            if self.status[Pos - 1] == 0 and self.status[Pos] == 1:
-                TextoMemoria = self.grid[Pos]["text"]
-                while Pos < 100 and self.grid[Pos]["text"] == TextoMemoria:
-                    TamanhoMemoria += 1
-                    Pos += 1
+    def realocar(self):
+        tamanho_memoria = 0
+        texto_memoria = None
+        for pos in range(1, 100):
+            if self.status[pos - 1] == 0 and self.status[pos] == 1:
+                texto_memoria = self.grade[pos]["text"]
+                while pos < 100 and self.grade[pos]["text"] == texto_memoria:
+                    tamanho_memoria += 1
+                    pos += 1
                 break
-        if TextoMemoria is None:
-            return self.grid 
-        for Pos in range(0, 100):  
-            if TextoMemoria == self.grid[Pos]["text"]:
-                self.grid[Pos]["text"] = ""
-                self.grid[Pos]["background"] = "white"
-                self.status[Pos] = 0
-        for Pos in range(0, 100):  
-            if self.status[Pos] == 0 and TamanhoMemoria > 0:
-                self.grid[Pos]["text"] = TextoMemoria
-                self.grid[Pos]["background"] = self.groups[TextoMemoria]
-                self.status[Pos] = 1
-                TamanhoMemoria -= 1
-        return self.grid 
+        if texto_memoria is None:
+            return self.grade
+        for pos in range(100):
+            if texto_memoria == self.grade[pos]["text"]:
+                self.grade[pos]["text"] = ""
+                self.grade[pos]["background"] = "white"
+                self.status[pos] = 0
+        for pos in range(100):
+            if self.status[pos] == 0 and tamanho_memoria > 0:
+                self.grade[pos]["text"] = texto_memoria
+                self.grade[pos]["background"] = self.grupos[texto_memoria]
+                self.status[pos] = 1
+                tamanho_memoria -= 1
+        return self.grade
 
-root = tk.Tk()
-width = 800
-height = 600
-root.resizable(0, 0)
-root.title('Gerenciador de Memória')
-screen_width = root.winfo_screenwidth()
-screen_height = root.winfo_screenheight()
-x = (screen_width/2) - (width/2)
-y = (screen_height/2) - (height/2)
-root.geometry('%dx%d+%d+%d' % (width, height, x, y))
-mm = memory_manager(root)
-button_frame = tk.Frame(root)
-button_frame.pack(side="top", fill="x", pady=20)
-allocate_button = tk.Button(button_frame, text="Alocar", command=mm.allocate, height=5, width=26, bg='gray', borderwidth=0)
-allocate_button.pack(side="left", padx=5)
-deallocate_button = tk.Button(button_frame, text="Desalocar", command=mm.deallocate, height=5, width=26, bg='gray', borderwidth=0)
-deallocate_button.pack(side="left", padx=5)
-full_deallocate_button = tk.Button(button_frame, text="Limpar Processos", command=mm.full_deallocate, height= 5, width=26, bg='gray', borderwidth=0)
-full_deallocate_button.pack(side='left', padx=5)
-reallocate_button = tk.Button(button_frame, text="Realocar", command=mm.reallocate, height=5, width=26, bg='gray', borderwidth=0)
-reallocate_button.pack(side="left", padx=5)
-root.mainloop()
+def main():
+    raiz = tk.Tk()
+    largura = 800
+    altura = 600
+    raiz.resizable(0, 0)
+    raiz.title('Gerenciador de Memória')
+    largura_tela = raiz.winfo_screenwidth()
+    altura_tela = raiz.winfo_screenheight()
+    x = (largura_tela/2) - (largura/2)
+    y = (altura_tela/2) - (altura/2)
+    raiz.geometry('%dx%d+%d+%d' % (largura, altura, x, y))
+    mm = GerenciadorMemoria(raiz)
+    quadro_botao = tk.Frame(raiz)
+    quadro_botao.pack(side="top", fill="x", pady=20)
+    botao_alocar = tk.Button(quadro_botao, text="Alocar", command=mm.alocar, height=5, width=26, bg='gray', borderwidth=0)
+    botao_alocar.pack(side="left", padx=5)
+    botao_desalocar = tk.Button(quadro_botao, text="Desalocar", command=mm.desalocar, height=5, width=26, bg='gray', borderwidth=0)
+    botao_desalocar.pack(side="left", padx=5)
+    botao_limpar_processos = tk.Button(quadro_botao, text="Limpar Processos", command=mm.limpar_processos, height= 5, width=26, bg='gray', borderwidth=0)
+    botao_limpar_processos.pack(side='left', padx=5)
+    botao_realocar = tk.Button(quadro_botao, text="Realocar", command=mm.realocar, height=5, width=26, bg='gray', borderwidth=0)
+    botao_realocar.pack(side="left", padx=5)
+    raiz.mainloop()
+
+if __name__ == "__main__":
+    main()
