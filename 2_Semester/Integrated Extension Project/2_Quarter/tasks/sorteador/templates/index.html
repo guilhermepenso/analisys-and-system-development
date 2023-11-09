@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sorteio de Grupos</title>
+    <style>
+        body {
+            background-color: grey;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        input {
+            margin: 10px;
+        }
+        .grid-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
+        }
+        .grid-item {
+            border: 1px solid black;
+            padding: 10px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sorteio de Grupos</h1>
+    <form method="POST">
+        <label for="nomes">Nomes:</label><br>
+        <input type="text" id="nomes" name="nomes" required><br>
+        <label for="quantidade_listas">Quantidade de Grupos:</label><br>
+        <input type="number" id="quantidade_listas" name="quantidade_listas" required><br>
+        <input type="submit" value="Sortear">
+    </form>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% elif listas %}
+        <div class="grid-container">
+            {% for lista in listas %}
+                <div class="grid-item">
+                    {% for nome in lista %}
+                        <p>{{ nome }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</body>
+</html>

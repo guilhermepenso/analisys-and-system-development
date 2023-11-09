@@ -1,0 +1,25 @@
+import random
+
+nomes = input("Nomes: ")
+quantidade_listas = int(input("Quantidade de Grupos: "))
+
+nomes = nomes.split(", ")
+random.shuffle(nomes)
+
+listas = []
+div_grupos = len(nomes) // quantidade_listas
+
+if len(nomes) % quantidade_listas == 0:
+    for i in range(quantidade_listas):
+        listas.append(nomes[i * div_grupos:(i + 1) * div_grupos])
+else:
+    for i in range(quantidade_listas):
+        if i == quantidade_listas - 1:
+            listas.append(nomes[i * div_grupos:])
+        else:
+            listas.append(nomes[i * div_grupos:(i + 1) * div_grupos])
+    ultimo_nome = listas[-1].pop()
+    listas[random.randint(0, quantidade_listas - 1)].append(ultimo_nome)
+
+for nomes in listas:
+    print(nomes)
