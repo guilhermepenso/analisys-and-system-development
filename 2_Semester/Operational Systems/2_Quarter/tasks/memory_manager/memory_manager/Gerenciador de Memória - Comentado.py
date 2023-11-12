@@ -90,17 +90,19 @@ class GerenciadorMemoria:
         if best_fit is None:
             messagebox.showinfo("Erro", "Sem Espaço Sequencial")
             return
-        
+
         # Chama a função para gerar o nome do processo e gera uma cor aleatória 
-        cor_bloco = "#{:06x}".format(random.randint(0x0000, 0xFFFFFF))
         nome_bloco = next(self.chars)
+        cor_bloco = "#{:06x}".format(random.randint(0x0000, 0xFFFFFF))
         
         # Aloca na memória usando as posições da variável best_fit, altera seu status para "1" com o nome em ordem alfabética e cor aleatória
         for k in range(n):
             self.status[best_fit[k]] = 1
+            
+            # Altera parte visual do Tkinter, adicionando o nome do processo e sua cor
             self.grade[best_fit[k]]["text"] = nome_bloco
             self.grade[best_fit[k]]["background"] = cor_bloco
-            
+        
     # Desalocar um processo
     def desalocar(self):
         
@@ -119,7 +121,7 @@ class GerenciadorMemoria:
     # Busca nas 100 posições todos os processos que não estão livres e muda de "1" para "0" o status e altera para sem texto e cor branca visualmente 
     def limpar_processos(self):
         for i in range(100):
-            if self.status[i] != 0:
+            if self.status[i] == 1:
                 self.status[i] = 0
                 
                 # Altera parte visual do Tkinter

@@ -66,7 +66,7 @@ class GerenciadorMemoria:
                 self.status[i] = 0
     def limpar_processos(self):
         for i in range(100):
-            if self.status[i] != 0:
+            if self.status[i] == 1:
                 self.grade[i]["background"] = "white"
                 self.grade[i]["text"] = ""
                 self.status[i] = 0
