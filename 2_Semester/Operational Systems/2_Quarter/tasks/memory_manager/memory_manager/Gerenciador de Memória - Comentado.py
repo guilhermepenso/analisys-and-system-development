@@ -76,7 +76,6 @@ class GerenciadorMemoria:
                 # Após alocar o processo no menor espaço disponível, limpa a lista dos blocos_livres que está desatualizada para o próximo processo solicitado pelo usuário
                 blocos_livres = []
                 
-        # Atualiza o best_fit com a lista de blocos_livres atualizada para próxima solicitação de alocação do usuário
         if len(blocos_livres) >= n:
             if best_fit is None or len(best_fit) > len(blocos_livres):
                 best_fit = list(blocos_livres)
