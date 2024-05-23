@@ -1,0 +1,40 @@
+exercicio2_fisicoCREATE TABLE ator (
+	cpf BIGINT NOT NULL,
+	nome VARCHAR(50) NOT NULL,
+	sobrenome VARCHAR(50) NOT NULL,
+	PRIMARY KEY(cpf)
+);
+
+CREATE TABLE filme (
+	id INT NOT NULL,
+	titulo VARCHAR(50) NOT NULL,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE premio (
+	codigo INT NOT NULL,
+	descricao TEXT(100) NOT NULL,
+	PRIMARY KEY(codigo)
+);
+
+CREATE TABLE participacao (
+	ator_cpf BIGINT NOT NULL,
+	filme_id INT NOT NULL,
+	papel VARCHAR(50) NULL,
+	PRIMARY KEY(ator_cpf, filme_id),
+	CONSTRAINT fk_participacao_ator_cpf
+		FOREIGN KEY (ator_cpf) REFERENCES ator (cpf),
+	CONSTRAINT fk_participacao_ator_filme
+		FOREIGN KEY (filme_id) REFERENCES filme (id)
+);
+
+CREATE TABLE premiacao (
+	filme_id INT NOT NULL,
+	premio_codigo INT NOT NULL,
+	papel VARCHAR(50) NOT NULL,
+	PRIMARY KEY(filme_id, premio_codigo),
+	CONSTRAINT fk_participacao_filme_id
+		FOREIGN KEY (filme_id) REFERENCES filme (id),
+	CONSTRAINT fk_participacao_filme_premio
+		FOREIGN KEY (premio_codigo) REFERENCES premio (codigo)
+);

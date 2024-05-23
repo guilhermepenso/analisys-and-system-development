@@ -1,0 +1,43 @@
+AULA 15-04 - BANCO DE DADOS
+
+ALTER TABLE nome_tabela
+CHANGE COLUMN nome_atual nome_desejado TIPO() NULL/NOTNULL;
+
+ALTER TABLE nome_tabela
+MODIFY COLUMN nome_coluna ALTERARTIPO() ALTERARNULL/NOTNULL;
+
+ADD COLUMN nome_tabela
+ADD COLUMN nome_coluna TIPO() NULL/NOTNULL;
+
+
+
+-- DML - LINGUAGEM DE MANIPULAÇÃO DE DADOS (CRUD)
+
+INSERT INTO nome_tabela (nome_coluna1, nome_coluna2, ...)
+VALUES (valor1, valor2, ...);
+
+INSERT INTO nome_tabela
+VALUES
+ (..., ..., ..., NULL, ...,),
+ (..., NULL, ..., NULL, ...,),
+ (...);
+
+SELECT * FROM nome_tabela;
+
+* Não pode adicionar dados em uma foreign key de uma tabela 
+
+UPDATE nome_tabela
+SET nome_coluna = valor_alterado | coluna_referencia = valor_coluna_referencia
+FROM coluna_filtro = valor_coluna_filtro;
+
+UPDATE nome_tabela
+SET nome_coluna = valor
+WHERE (depto_num = 3 OR depto_num=2)
+AND cpf <> valor
+
+DELETE FROM nome_tabela
+[WHERE conditions]
+
+DELETE FROM nome_tabela
+WHERE num_dpto = 4; 
+

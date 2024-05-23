@@ -1,0 +1,285 @@
+SELECT * FROM funcionario;
+
+--
+
+SELECT 
+	cpf,
+	p_nome,
+	sobrenome
+FROM 
+	funcionario;
+
+--
+
+SELECT 
+	p_nome AS Nome,
+	sobrenome AS Sobrenome,
+	dt_nasc_func AS 'Data de Nascimento'
+FROM 
+	funcionario;
+
+
+--
+
+SELECT 
+	cpf,
+	p_nome,
+	sobrenome,
+	dt_nasc_func
+FROM 
+	funcionario
+WHERE
+	YEAR(dt_nasc_func) > '1974'
+ORDER BY
+	p_nome;
+
+--
+
+SELECT 
+	cpf,
+	p_nome,
+	sobrenome,
+	dt_nasc_func
+FROM 
+	funcionario
+WHERE
+	YEAR(dt_nasc_func) >= '1970'
+AND
+	YEAR(dt_nasc_func) <= '1974'
+ORDER BY
+	p_nome;
+
+--
+
+SELECT 
+	cpf,
+	p_nome,
+	sobrenome,
+	telephone,
+	email
+FROM 
+	funcionario
+WHERE
+	email LIKE '%outlook%';
+
+--
+
+SELECT 
+	cpf,
+	p_nome,
+	sobrenome,
+	telephone,
+	email
+FROM 
+	funcionario
+WHERE
+	email LIKE '%outlook____%';
+
+--
+
+ORDER BY valor DESC; (ASC é padrão)
+
+--
+
+SELECT cpf, p_nome, sobrenome, salario
+WHERE funcionario
+WHERE salario > 15000.00
+ORDER BY salario DESC;
+
+--
+
+
+
+ATIVIDADES 
+
+1. Selecione todos os funcionários
+
+SELECT * 
+FROM funcionario;
+
+2. Selecione todas as funcionárias
+
+SELECT * 
+FROM funcionario
+WHERE sexo = 'F';
+
+3. Selecione todos os funcionarios nascidos no mês de maio
+
+SELECT * 
+FROM funcionario
+WHERE MONTH(dt_nasc_func) = '05';
+
+4. Selecione todos os funcionarios que ganham entre 5.000 e 10.000
+
+SELECT *
+FROM funcionario
+WHERE salario >= 5000
+AND salario <= 10000;
+
+5. Selecione cpf, nome e email dos funcionarios supervisionados pelo Steve Rogers
+
+SELECT 
+	cpf,
+	p_nome AS nome,
+	email
+FROM funcionario
+WHERE sup_cpf = '23585454799';
+
+6. Selecione todos os funcionarios com o email gmail
+
+SELECT *
+FROM funcionario
+WHERE email LIKE '%gmail%';
+
+8. Selecione todos os funcionarios ordenados pelos seus sobrenomes
+
+SELECT *
+FROM funcionario
+ORDER BY sobrenome;
+
+---
+
+Selecionar - Projetar - Juntar
+- condições
+- produto cartesiano
+
+--
+
+SELECT 
+	<tabela_1.coluna_id>,
+	<tabela_1.coluna_1>,
+	<tabela_1.coluna_2>,
+	<tabela_1.coluna_n>,
+	<tabela_1.coluna_id>,
+	<tabela_1.coluna_1>,
+	<tabela_1.coluna_2>,
+	<tabela_1.coluna_n>,
+	<tabela_1.coluna_1>,
+	<tabela_1.coluna_2>,
+	<tabela_1.coluna_n>
+FROM
+	<tabela_1>,
+	<tabela_2>,
+	<tabela_3>
+WHERE
+	<tabela_1.coluna_id> = <tabela_2._id>
+AND
+	<tabela_2.coluna_id> = <tabela_2._n>
+
+--
+
+SELECT *
+FROM departamento, funcionario
+WHERE departamento.num_depto = funcionario.depto_num;
+
+--
+
+SELECT 
+	departamento.nome_depto,
+	funcionario.cpf,
+	funcionario.p_nome,
+	funcionario.sobrenome
+FROM
+	departamento,
+	funcionario
+WHERE
+	departamento.num_depto = funcionario.depto_num;
+
+--
+
+SELECT 
+	d.nome_depto,
+	f.cpf,
+	f.p_nome,
+	f.sobrenome
+FROM
+	departamento AS d,
+	funcionario AS f
+WHERE
+	d.num_depto = f.depto_num;
+
+--
+
+SELECT 
+	d.nome_depto AS Departamento,
+	f.cpf AS CPF,
+	f.p_nome AS Nome,
+	f.sobrenome AS Sobrenome
+FROM
+	departamento AS d,
+	funcionario AS f
+WHERE
+	d.num_depto = f.depto_num;
+
+--
+
+SELECT 
+	d.nome_depto AS Departamento,
+	f.cpf AS CPF,
+	CONCAT(f.p_nome, " ", f.sobrenome) AS Nome
+FROM
+	departamento AS d,
+	funcionario AS f
+WHERE
+	d.num_depto = f.depto_num;
+
+--
+
+SELECT 
+	projeto.nome_proj AS projeto,
+	funcionario.cpf AS CPF,
+	CONCAT(funcionario.p_nome, " ", funcionario.sobrenome) AS Nome,
+	trabalha.horas AS Horas
+FROM
+	funcionario,
+	trabalha,
+	projeto
+WHERE
+	funcionario.cpf = trabalha.cpf_func
+AND
+	trabalha.proj_num = projeto.num_proj;
+
+--
+
+SELECT 
+	projeto.nome_proj AS projeto,
+	funcionario.cpf AS CPF,
+	CONCAT(funcionario.p_nome, " ", funcionario.sobrenome) AS Nome,
+	trabalha.horas AS Horas
+FROM
+	funcionario,
+	trabalha,
+	projeto
+WHERE
+	funcionario.cpf = trabalha.cpf_func
+AND
+	trabalha.proj_num = projeto.num_proj
+AND
+	projeto.nome_proj = 'Criptografia';
+
+--
+
+SELECT 
+	p.nome_proj AS projeto,
+	f.cpf AS CPF,
+	CONCAT(f.p_nome, " ", f.sobrenome) AS Nome,
+	t.horas AS Horas
+FROM
+	funcionario AS f,
+	trabalha AS t,
+	projeto AS p
+WHERE
+	f.cpf = t.cpf_func
+AND
+	t.proj_num = p.num_proj
+AND
+	p.nome_proj = 'Criptografia';
+
+--
+
+Join / Junções
+
+
+
+
+
